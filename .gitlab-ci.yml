@@ -1,0 +1,47 @@
+image: daocloud.io/baidao/web-deploy:v1.0
+stages:
+  - deploy
+
+before_script:
+  - yarn
+
+# 缓存node_modules
+cache:
+  paths:
+  - node_modules
+variables:
+  ROUTE: vue-web-cli3.0
+
+# deploy test branch
+deployRelease:
+  stage: deploy
+  tags:
+    - web-build-deploy-test-1887
+  script:
+    - export DOMAIN=test-static.qzg99.cn/static &&\
+    - export ROUTE=$ROUTE &&\
+    - npm run build &&\
+    - sh /workspace/deploy/deploy.sh
+  only:
+    - test
+
+deployProd:
+  stage: deploy
+  script:
+    - export DOMAIN=static.qzg99.cn &&\
+    - export ROUTE=$ROUTE &&\
+    - npm run build_prod &&\
+    - sh /workspace/deploy/deploy.sh
+
+  # 每次发布的zip包会保存在gitlab上，失效时间2个月
+  artifacts:
+    name: vue-build-deploy."$CI_BUILD_REF"
+    paths:
+    - dist
+    expire_in: 2 mos
+  only:
+    - master
+  only:
+    - tags
+  tags:
+    - web-build-deploy-1887
