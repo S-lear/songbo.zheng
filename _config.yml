@@ -1,0 +1,24 @@
+# auto: true
+
+markdown: kramdown
+highlighter: rouge
+paginate: 8
+permalink: /:title
+encoding: UTF-8
+gems: [jekyll-paginate]
+
+title: 前端开发问题总结
+url: http://songbo.zheng.github.io
+feed: /atom.xml
+author_info: <a href="http://songbo.zheng.github.io/">zhengsongbo</a>
+
+myblog:
+  gavatar: images/live.jpg
+  gpname: zhengsongbo
+  # linkedin: http://www.linkedin.com/in/taotaoli
+  github: https://github.com/S-lear
+  email: saclear9310@gmail.com
+  coverimgs: []
+  postbgimg: []
+
+categories: [python, books]
