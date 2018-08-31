@@ -1,6 +1,6 @@
 module.exports = {
-  baseUrl: './dist',
-  indexPath: '../index.html',
+  baseUrl: './',
+  indexPath: 'index_1.html',
   outputDir: 'dist',
   filenameHashing: true,
   devServer: {
